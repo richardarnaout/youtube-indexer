@@ -1,5 +1,5 @@
-Tutoriel d'Installation et de Configuration - YouTube Indexer
-Ce guide explique les étapes pour configurer un projet d'indexation de vidéos YouTube avec un backend Node.js, un frontend React, et une base de données MySQL.
+YouTube Indexer
+Ce projet permet d'indexer des vidéos YouTube via une API YouTube, avec un backend en Node.js, un frontend en React, et une base de données MySQL pour stocker les informations.
 
 Prérequis
 Avant de commencer, il faut avoir installé les outils suivants :
@@ -8,33 +8,33 @@ Node.js : Télécharger et installer Node.js
 
 XAMPP : Télécharger et installer XAMPP (pour MySQL et Apache)
 
-MySQL Workbench (optionnel) : Utiliser MySQL Workbench pour gérer la base de données (télécharger depuis MySQL Workbench)
+MySQL Workbench (optionnel) : Télécharger et installer MySQL Workbench
 
-1. Initialisation du Backend (Node.js)
-1.1 Créer le répertoire du projet Backend
-Dans le terminal, se rendre dans le répertoire du projet et créer un dossier pour le backend :
+1. Backend (Node.js)
+1.1 Créer le Répertoire du Projet
+Dans le terminal, créez un dossier pour le backend :
 
 bash
 Copier
 Modifier
 mkdir backend
 cd backend
-1.2 Initialiser le projet Node.js
-Initialiser un projet Node.js dans le dossier backend :
+1.2 Initialiser le Projet Node.js
+Initialisez un projet Node.js :
 
 bash
 Copier
 Modifier
 npm init -y
-1.3 Installer les dépendances Backend
-Installer les modules nécessaires pour le backend :
+1.3 Installer les Dépendances Backend
+Installez les dépendances nécessaires pour le backend :
 
 bash
 Copier
 Modifier
 npm install express mysql dotenv
-1.4 Créer la structure du Backend
-Créer un fichier index.js dans le répertoire backend et y insérer le code suivant :
+1.4 Créer le Fichier index.js
+Créez un fichier index.js et ajoutez le code suivant pour configurer le serveur backend :
 
 js
 Copier
@@ -46,14 +46,14 @@ const dotenv = require('dotenv');
 dotenv.config();  // Charger les variables d'environnement depuis .env
 
 const app = express();
-app.use(express.json());  // Pour permettre l'envoi de données JSON
+app.use(express.json());  // Permet l'envoi de données JSON
 
 // Configuration de la base de données MySQL
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',  // Mot de passe par défaut dans XAMPP
-  database: 'youtube_db',  // Remplacer par le nom de la base de données
+  database: 'youtube_db',  // Nom de la base de données
 });
 
 // Connexion à la base de données
@@ -81,23 +81,23 @@ const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Serveur backend démarré sur http://localhost:${PORT}`);
 });
-1.5 Créer le fichier .env
-Dans le dossier backend, créer un fichier .env et y ajouter la clé API YouTube :
+1.5 Créer le Fichier .env
+Dans le dossier backend, créez un fichier .env et ajoutez votre clé API YouTube :
 
 env
 Copier
 Modifier
 YOUTUBE_API_KEY=ta_cle_api_youtube
-1.6 Démarrer le serveur Backend
-Dans le terminal, lancer le serveur :
+1.6 Démarrer le Serveur Backend
+Lancez le serveur backend avec la commande :
 
 bash
 Copier
 Modifier
 node index.js
-2. Initialisation du Frontend (React avec Vite)
-2.1 Créer le répertoire du projet Frontend
-Retourner à la racine du projet et créer un répertoire pour le frontend :
+2. Frontend (React avec Vite)
+2.1 Créer le Répertoire du Projet Frontend
+Retournez à la racine du projet, puis créez un répertoire pour le frontend :
 
 bash
 Copier
@@ -105,24 +105,24 @@ Modifier
 cd ..
 mkdir frontend
 cd frontend
-2.2 Initialiser le projet React avec Vite
-Initialiser un projet React avec Vite :
+2.2 Initialiser le Projet React avec Vite
+Initialisez un projet React avec Vite :
 
 bash
 Copier
 Modifier
 npm create vite@latest
-Choisir React comme template.
+Choisissez React comme template.
 
-2.3 Installer les dépendances Frontend
-Dans le répertoire frontend, installer les modules nécessaires :
+2.3 Installer les Dépendances Frontend
+Installez les dépendances nécessaires pour le frontend :
 
 bash
 Copier
 Modifier
 npm install
-2.4 Ajouter le code React dans App.jsx
-Remplacer le contenu de src/App.jsx par le code suivant :
+2.4 Créer le Fichier App.jsx
+Remplacez le contenu de src/App.jsx par le code suivant pour la recherche de vidéos YouTube et l'affichage des résultats :
 
 js
 Copier
@@ -205,25 +205,25 @@ function App() {
 }
 
 export default App;
-2.5 Ajouter la clé API dans .env pour le Frontend
-Dans le dossier frontend, créer un fichier .env et y ajouter :
+2.5 Créer le Fichier .env pour le Frontend
+Dans le dossier frontend, créez un fichier .env et ajoutez la clé API YouTube :
 
 env
 Copier
 Modifier
 VITE_YOUTUBE_API_KEY=ta_cle_api_youtube
-2.6 Démarrer le serveur Frontend
-Lancer le serveur de développement React :
+2.6 Démarrer le Serveur Frontend
+Lancez le serveur de développement React :
 
 bash
 Copier
 Modifier
 npm run dev
-Accéder à l'application dans le navigateur via http://localhost:5173.
+Accédez à l'application via http://localhost:5173.
 
 3. Configuration de la Base de Données MySQL
-3.1 Créer la base de données et la table
-Lancer phpMyAdmin via XAMPP et créer une base de données nommée youtube_db. Ensuite, créer une table videos avec la structure suivante :
+3.1 Créer la Base de Données et la Table
+Lancez phpMyAdmin via XAMPP, créez une base de données youtube_db, puis créez la table videos :
 
 sql
 Copier
@@ -234,11 +234,11 @@ CREATE TABLE videos (
   description TEXT,
   video_id VARCHAR(255)
 );
-3.2 Insertion des données dans la base
-Lors de la récupération des vidéos via l'API YouTube, insérer les informations dans la base de données MySQL avec une requête INSERT.
+3.2 Insérer des Données dans la Base
+Lors de la récupération des vidéos via l'API YouTube, insérez les informations dans la base de données MySQL avec une requête INSERT.
 
 4. Résumé des Commandes
-Voici les principales commandes utilisées pour l'installation et l'exécution des serveurs :
+Voici les principales commandes pour l'installation et l'exécution des serveurs :
 
 Backend (Node.js)
 Installer les dépendances :
@@ -267,5 +267,6 @@ Copier
 Modifier
 npm run dev
 Conclusion
-Ce guide couvre l'installation et la configuration du backend avec Node.js, du frontend avec React, ainsi que la base de données MySQL pour l'indexation des vidéos YouTube. Utilisez les étapes ci-dessus pour mettre en place et démarrer votre projet.
+Ce guide couvre l'installation et la configuration du backend avec Node.js, du frontend avec React, ainsi que la configuration de MySQL pour l'indexation des vidéos YouTube. Utilisez ce projet pour récupérer et afficher des vidéos de YouTube tout en les stockant dans une base de données pour une utilisation ultérieure.
 
+Avec cette structure, le README est bien ordonné et prêt pour GitHub. Vous pouvez le copier directement dans votre projet.
