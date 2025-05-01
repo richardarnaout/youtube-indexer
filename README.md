@@ -219,7 +219,10 @@ CREATE TABLE videos (
 ```
 
 3.2 Insérer des Données dans la Base
-Lors de la récupération des vidéos via l'API YouTube, insérez les informations dans la base de données MySQL avec une requête INSERT.
+
+Les dépendances nécessaires sont installées avec npm install axios sqlite3. Il crée ensuite un fichier pour sa base de données SQLite avec touch database.db, ouvre SQLite en exécutant sqlite3 database.db et crée les tables nécessaires (comme videos et channels) avec les commandes SQL. Un fichier statements.sql est créé pour stocker les requêtes SQL, telles que l'insertion de vidéos et de canaux. Pour interagir avec la base de données et l'API YouTube, il crée un fichier index.js où il utilise la bibliothèque axios pour appeler l'API YouTube et sqlite3 pour gérer la base de données. Lorsqu'il appelle l'API YouTube, il récupère les vidéos d'une chaîne et les insère dans la base de données SQLite. Enfin, il crée un fichier .gitignore pour exclure des fichiers comme database.db et le dossier node_modules/ du versionnage Git.
+
+
 
 Conclusion
 Ce guide couvre l'installation et la configuration du backend avec Node.js, du frontend avec React, ainsi que la configuration de MySQL pour l'indexation des vidéos YouTube. Utilisez ce projet pour récupérer et afficher des vidéos de YouTube tout en les stockant dans une base de données pour une utilisation ultérieure.
